@@ -4,7 +4,7 @@ export class TogglingSensor {
     public status = 'not initialized';
     public isReady = false;
     public isRunning = false;
-    public data = 'XX';
+    public data = '';
 
     protected frequency = 20;
 

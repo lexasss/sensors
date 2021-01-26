@@ -6,10 +6,10 @@
                     h1.title Sensors
                     h2.subtitle Detects the sensors available on your device
 
-        section.section(v-for="sensor in sensors")
+        section.section.py-4(v-for="(sensor, index) in sensors" :key="index" :class="recordClass(index)")
             .container
-                h5.title.is-5 {{ sensor.title }}
-                .mb-3
+                h5.title.is-5.mb-3 {{ sensor.title }}
+                .mb-2
                     p {{ sensor.status }}
                     p(v-show="sensor.isRunning") {{ sensor.data }}
                 button.button(
@@ -54,6 +54,10 @@ export default class App extends Vue {
         new Gravity(),
     ];
 
+    recordClass( index: number ) {
+        return index % 2 ? 'odd' : 'even';
+    }
+
     created() {
         this.$store.dispatch( 'connect', 'local' ).then(() => {
             // ?? do we need Vuex here?
@@ -67,5 +71,13 @@ export default class App extends Vue {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+}
+
+.odd {
+    background-color: #e8e8e8;
+}
+
+.even {
+    background-color: #ffffff;
 }
 </style>
