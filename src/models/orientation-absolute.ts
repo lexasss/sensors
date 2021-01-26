@@ -10,7 +10,11 @@ export class OrientationAbsolute extends TogglingSensor {
                 frequency: 50,
             });
 
-            this.setSensor( (orientationAbsolute as any) as Sensor );
+            this.setSensor( (orientationAbsolute as any) as Sensor, [
+                'accelerometer',
+                'gyroscope',
+                'magnetometer',
+            ]);
 
             orientationAbsolute.addEventListener( 'reading', (event: Event) => {
                 const n = orientationAbsolute.quaternion;

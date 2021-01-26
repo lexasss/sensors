@@ -32,13 +32,16 @@ export class TogglingSensor {
         return !!this.sensor?.activated;
     }
 
-    protected setSensor( sensor: Sensor, name?: string ) {
+    protected setSensor( sensor: Sensor, permissions: string | string[] ) {
         this.sensor = sensor;
 
         this.sensor.onerror = (event: SensorErrorEvent) => {
             if (event.error.name === 'NotAllowedError') {
-                if (name) {
-                    this.askPermission( name );
+                if (Array.isArray( permissions )) {
+                    permissions.forEach( p => this.askPermission( p ));
+                }
+                else {
+                    this.askPermission( permissions );
                 }
             }
             else if (event.error.name === 'NotReadableError' ) {

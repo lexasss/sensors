@@ -10,7 +10,10 @@ export class OrientationRelative extends TogglingSensor {
                 frequency: 50,
             });
 
-            this.setSensor( (orientationRelative as any) as Sensor );
+            this.setSensor( (orientationRelative as any) as Sensor, [
+                'accelerometer',
+                'gyroscope',
+            ]);
 
             orientationRelative.addEventListener( 'reading', (event: Event) => {
                 const n = orientationRelative.quaternion;
