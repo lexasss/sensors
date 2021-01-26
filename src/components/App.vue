@@ -9,6 +9,8 @@
             .container
                 h5.title.is-5 Accelerometer
                 p {{ accel.status }}
+                p(v-show="accel.isRunning") {{ accel.data }}
+                button.button(@click="accel.toggle()") Toggle
         footer.footer.has-text-light.has-background-dark
             content.has-text-centered
                 p Oleg Spakov @ {{ YEAR }}, v.{{ VERSION }}
@@ -34,6 +36,8 @@ export default class App extends Vue {
         this.$store.dispatch( 'connect', 'local' ).then(() => {
             // ??
         });
+
+        // this.accel.on( 'data', () => this.$nextTick() );
     }
 }
 </script>

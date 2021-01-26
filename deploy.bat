@@ -13,7 +13,7 @@ rem echo 'www.example.com' > CNAME
 call git init
 call git add -A
 call git commit -m 'deploy'
-call git remote add origin https://github.com/lexasss/senosrs
+call git remote add origin https://github.com/lexasss/sensors
 
 rem if you are deploying to https://<USERNAME>.github.io
 rem git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master

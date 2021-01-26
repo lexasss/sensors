@@ -1,6 +1,6 @@
 {
   "name": "sensors",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -16,6 +16,7 @@
     "vuex": "^3.6.0"
   },
   "devDependencies": {
+    "@types/events": "^3.0.0",
     "@types/w3c-generic-sensor": "^1.0.3",
     "@vue/cli-plugin-pwa": "^4.5.10",
     "@vue/cli-plugin-typescript": "~4.5.0",
