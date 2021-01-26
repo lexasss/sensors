@@ -7,7 +7,7 @@ export class Magent extends TogglingSensor {
 
         try {
             const magnetometer = new Magnetometer({
-                frequency: 50,
+                frequency: this.frequency,
             });
 
             this.setSensor( magnetometer, 'magnetometer' );

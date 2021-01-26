@@ -12,7 +12,7 @@ export class AmbientLight extends TogglingSensor {
 
         try {
             const ambientLight = new AmbientLightSensor({
-                frequency: 50,
+                frequency: this.frequency,
             });
 
             this.setSensor( ambientLight, 'ambient-light-sensor' );

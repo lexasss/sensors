@@ -7,7 +7,7 @@ export class Gyro extends TogglingSensor {
 
         try {
             const gyro = new Gyroscope({
-                frequency: 50,
+                frequency: this.frequency,
             });
 
             this.setSensor( gyro, 'gyroscope' );

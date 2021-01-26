@@ -6,6 +6,8 @@ export class TogglingSensor {
     public isRunning = false;
     public data = 'XX';
 
+    protected frequency = 20;
+
     private sensor?: Sensor;
 
     constructor( title: string ) {

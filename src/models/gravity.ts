@@ -1,12 +1,12 @@
 import { TogglingSensor } from './toggling-sensor';
 
-export class Accel extends TogglingSensor {
+export class Gravity extends TogglingSensor {
 
     constructor() {
-        super( 'Accelerometer' );
+        super( 'Gravity' );
 
         try {
-            const accel = new Accelerometer({
+            const accel = new GravitySensor({
                 frequency: this.frequency,
             });
 

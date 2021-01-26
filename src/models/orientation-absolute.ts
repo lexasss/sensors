@@ -7,7 +7,7 @@ export class OrientationAbsolute extends TogglingSensor {
 
         try {
             const orientationAbsolute = new AbsoluteOrientationSensor({
-                frequency: 50,
+                frequency: this.frequency,
             });
 
             this.setSensor( (orientationAbsolute as any) as Sensor, [

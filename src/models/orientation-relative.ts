@@ -7,7 +7,7 @@ export class OrientationRelative extends TogglingSensor {
 
         try {
             const orientationRelative = new RelativeOrientationSensor({
-                frequency: 50,
+                frequency: this.frequency,
             });
 
             this.setSensor( (orientationRelative as any) as Sensor, [

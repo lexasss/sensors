@@ -31,6 +31,8 @@ import { Magent } from '@/models/magnetometer';
 import { OrientationAbsolute } from '@/models/orientation-absolute';
 import { OrientationRelative } from '@/models/orientation-relative';
 import { AmbientLight } from '@/models/ambient-light-sensor';
+import { AccelLinear } from '@/models/acceleration-linear';
+import { Gravity } from '@/models/gravity';
 
 @Component({
     components: {
@@ -48,6 +50,8 @@ export default class App extends Vue {
         new OrientationAbsolute(),
         new OrientationRelative(),
         new AmbientLight(),
+        new AccelLinear(),
+        new Gravity(),
     ];
 
     created() {
