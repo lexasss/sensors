@@ -2,6 +2,8 @@
     #app
         section.hero.is-dark.is-bold
             .hero-body
+                .logo.is-overlay
+                    img(src="@/assets/logo.png")
                 .container
                     h1.title Sensors
                     h2.subtitle Detects the sensors available on your device
@@ -68,9 +70,9 @@ export default class App extends Vue {
 
 <style lang="less">
 #app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
 }
 
 .odd {
@@ -79,5 +81,11 @@ export default class App extends Vue {
 
 .even {
     background-color: #ffffff;
+}
+
+.logo {
+    top: 3rem !important;
+    left: 1.5rem !important;
+    width: 2.5em;
 }
 </style>
