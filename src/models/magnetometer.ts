@@ -1,23 +1,16 @@
 import { TogglingSensor } from './toggling-sensor';
 
-export class Magent extends TogglingSensor {
+export class Magent extends TogglingSensor<Magnetometer> {
 
     constructor() {
-        super( 'Magnetometer' );
+        super(
+            'Magnetometer',
+            'magnetometer',
+            (params: SensorOptions) => new Gyroscope( params ),
+        );
+    }
 
-        try {
-            const magnetometer = new Magnetometer({
-                frequency: this.frequency,
-            });
-
-            this.setSensor( magnetometer, 'magnetometer' );
-
-            magnetometer.addEventListener( 'reading', (event: Event) => {
-                this.data = `{${magnetometer.x?.toFixed(1)} ${magnetometer.y?.toFixed(1)} ${magnetometer.z?.toFixed(1)}}`;
-            });
-
-        } catch (error) {
-            this.handleError( error );
-        }
+    protected onReading(event: Event) {
+        this.data = `{${this.sensor?.x?.toFixed(1)} ${this.sensor?.y?.toFixed(1)} ${this.sensor?.z?.toFixed(1)}}`;
     }
 }

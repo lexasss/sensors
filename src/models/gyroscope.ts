@@ -1,23 +1,16 @@
 import { TogglingSensor } from './toggling-sensor';
 
-export class Gyro extends TogglingSensor {
+export class Gyro extends TogglingSensor<Gyroscope> {
 
     constructor() {
-        super( 'Gyroscope' );
+        super(
+            'Gyroscope',
+            'gyroscope',
+            (params: SensorOptions) => new Gyroscope( params ),
+        );
+    }
 
-        try {
-            const gyro = new Gyroscope({
-                frequency: this.frequency,
-            });
-
-            this.setSensor( gyro, 'gyroscope' );
-
-            gyro.addEventListener( 'reading', (event: Event) => {
-                this.data = `{${gyro.x?.toFixed(3)} ${gyro.y?.toFixed(3)} ${gyro.z?.toFixed(3)}}`;
-            });
-
-        } catch (error) {
-            this.handleError( error );
-        }
+    protected onReading(event: Event) {
+        this.data = `{${this.sensor?.x?.toFixed(1)} ${this.sensor?.y?.toFixed(1)} ${this.sensor?.z?.toFixed(1)}}`;
     }
 }

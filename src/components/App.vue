@@ -14,7 +14,7 @@
                 .mb-2
                     p {{ sensor.status }}
                     p(v-show="sensor.isRunning") {{ sensor.data }}
-                button.button(
+                button.button.is-link(
                     @click="sensor.toggle()"
                     :disabled="!sensor.isReady") Toggle
 
@@ -45,7 +45,7 @@ export default class App extends Vue {
     readonly VERSION = process.env.PACKAGE_VERSION;
     readonly YEAR = new Date().getFullYear();
 
-    sensors: TogglingSensor[] = [
+    sensors: Array<TogglingSensor<Sensor>> = [
         new Accel(),
         new Gyro(),
         new Magent(),
@@ -86,6 +86,6 @@ export default class App extends Vue {
 .logo {
     top: 3rem !important;
     left: 1.5rem !important;
-    width: 2.5em;
+    width: 2.25em;
 }
 </style>

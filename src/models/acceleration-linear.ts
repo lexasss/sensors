@@ -1,23 +1,16 @@
 import { TogglingSensor } from './toggling-sensor';
 
-export class AccelLinear extends TogglingSensor {
+export class AccelLinear extends TogglingSensor<LinearAccelerationSensor> {
 
     constructor() {
-        super( 'Linear Acceleration Sensor' );
+        super(
+            'Linear Acceleration Sensor',
+            'accelerometer',
+            (params: SensorOptions) => new LinearAccelerationSensor( params ),
+        );
+    }
 
-        try {
-            const accel = new LinearAccelerationSensor({
-                frequency: this.frequency,
-            });
-
-            this.setSensor( accel, 'accelerometer' );
-
-            accel.addEventListener( 'reading', (event: Event) => {
-                this.data = `{${accel.x?.toFixed(1)} ${accel.y?.toFixed(1)} ${accel.z?.toFixed(1)}}`;
-            });
-
-        } catch (error) {
-            this.handleError( error );
-        }
+    protected onReading(event: Event) {
+        this.data = `{${this.sensor?.x?.toFixed(1)} ${this.sensor?.y?.toFixed(1)} ${this.sensor?.z?.toFixed(1)}}`;
     }
 }

@@ -1,33 +1,26 @@
 import { TogglingSensor } from './toggling-sensor';
 
-export class OrientationAbsolute extends TogglingSensor {
+export class OrientationAbsolute extends TogglingSensor<AnyOrientationSensor> {
 
     constructor() {
-        super( 'Absolute Orientation Sensor' );
-
-        try {
-            const orientationAbsolute = new AbsoluteOrientationSensor({
-                frequency: this.frequency,
-            });
-
-            this.setSensor( (orientationAbsolute as any) as Sensor, [
+        super(
+            'Absolute Orientation Sensor',
+            [
                 'accelerometer',
                 'gyroscope',
                 'magnetometer',
-            ]);
+            ],
+            (params: SensorOptions) => (new AbsoluteOrientationSensor( params ) as any) as AnyOrientationSensor,
+        );
+    }
 
-            orientationAbsolute.addEventListener( 'reading', (event: Event) => {
-                const n = orientationAbsolute.quaternion;
-                if (n) {
-                    this.data = `{${n[0].toFixed(3)} ${n[1].toFixed(3)} ${n[2].toFixed(3)} ${n[3].toFixed(3)}}`;
-                }
-                else {
-                    this.data = '{}';
-                }
-            });
-
-        } catch (error) {
-            this.handleError( error );
+    protected onReading(this: this, event: Event) {
+        const v = this.sensor?.quaternion;
+        if (v) {
+            this.data = `{${v[0].toFixed(3)} ${v[1].toFixed(3)} ${v[2].toFixed(3)} ${v[3].toFixed(3)}}`;
+        }
+        else {
+            this.data = '{}';
         }
     }
 }

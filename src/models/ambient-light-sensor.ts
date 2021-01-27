@@ -1,28 +1,16 @@
 import { TogglingSensor } from './toggling-sensor';
 
-declare class AmbientLightSensor extends Sensor {
-    illuminance?: number;
-    constructor( options: any );
-}
-
-export class AmbientLight extends TogglingSensor {
+export class AmbientLight extends TogglingSensor<AmbientLightSensor> {
 
     constructor() {
-        super( 'Ambient Light Sensor' );
+        super(
+            'Ambient Light Sensor',
+            'ambient-light-sensor',
+            (params: SensorOptions) => new AmbientLightSensor( params ),
+        );
+    }
 
-        try {
-            const ambientLight = new AmbientLightSensor({
-                frequency: this.frequency,
-            });
-
-            this.setSensor( ambientLight, 'ambient-light-sensor' );
-
-            ambientLight.addEventListener( 'reading', (event: Event) => {
-                this.data = `{${ambientLight.illuminance?.toFixed(3)}}`;
-            });
-
-        } catch (error) {
-            this.handleError( error );
-        }
+    protected onReading(event: Event) {
+        this.data = `{${this.sensor?.illuminance?.toFixed(3)}}`;
     }
 }

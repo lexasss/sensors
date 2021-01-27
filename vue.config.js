@@ -23,8 +23,8 @@ module.exports = {
 
     pwa: {
         assetsVersion: version,
-        themeColor: '#6E72C9',
-        msTileColor: '#C9836E',
+        themeColor: '#3273DC',
+        msTileColor: '#3273DC',
         appleMobileWebAppCache: 'yes',
         manifestOptions: {
             name: 'Sensors',
